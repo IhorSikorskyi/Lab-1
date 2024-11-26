@@ -11,7 +11,7 @@ datagen = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1.0 / 255.0)
 
 # Завантаження даних без використання навчання або валідації
 data = datagen.flow_from_directory(
-    data_path,
+    f"{data_path}/train",
     target_size=(128, 128),  # Розмір зображень для масштабування
     batch_size=32,
     class_mode="categorical",  # Для багатокласової класифікації
@@ -26,10 +26,10 @@ print(f"Категорії класів: {class_names}")
 print(f"Кількість класів: {len(class_names)}")
 print(f"Кількість зображень в кожній категорії:")
 for class_name in class_names:
-    print(f"{class_name}: {len(os.listdir(os.path.join(data_path, class_name)))} зображень")
+    print(f"{class_name}: {len(os.listdir(os.path.join(f"{data_path}/train", class_name)))} зображень")
 
 # 2. Перевірка балансу класів (зображення у кожному класі)
-class_counts = [len(os.listdir(os.path.join(data_path, class_name))) for class_name in class_names]
+class_counts = [len(os.listdir(os.path.join(f"{data_path}/train", class_name))) for class_name in class_names]
 plt.figure(figsize=(10, 6))
 plt.bar(class_names, class_counts)
 plt.title('Розподіл класів у наборі даних')
