@@ -49,6 +49,10 @@ model.add(Conv2D(128, (3, 3), kernel_regularizer=l2(0.01)))  # L2 регуляр
 model.add(Activation("relu"))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 
+model.add(Conv2D(128, (3, 3), kernel_regularizer=l2(0.01)))
+model.add(Activation("relu"))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+
 model.add(Flatten())
 model.add(Dense(128, activation="relu", kernel_regularizer=l2(0.01)))  # L2 регуляризація
 model.add(Dropout(0.5))  # Dropout для регуляризації

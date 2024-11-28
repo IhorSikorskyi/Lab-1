@@ -28,7 +28,7 @@ print(f"Кількість зображень в кожній категорії
 for class_name in class_names:
     print(f"{class_name}: {len(os.listdir(os.path.join(f"{data_path}/train", class_name)))} зображень")
 
-# 2. Перевірка балансу класів (зображення у кожному класі)
+# 2. Перевірка балансу класів
 class_counts = [len(os.listdir(os.path.join(f"{data_path}/train", class_name))) for class_name in class_names]
 plt.figure(figsize=(10, 6))
 plt.bar(class_names, class_counts)
@@ -41,18 +41,17 @@ plt.show()
 # 3. Візуалізація декількох зображень для кожного класу
 plt.figure(figsize=(10, 10))
 for i, class_name in enumerate(class_names):
-    # Отримуємо перший батч з ітератора
     class_images, _ = data.__next__()  # Змінено тут
 
-    for j in range(2):  # Дві картинки з кожної категорії
+    for j in range(2):
         plt.subplot(len(class_names), 2, i * 2 + j + 1)
-        plt.imshow(class_images[j])  # Відображення зображення
-        plt.xticks([])  # Прибираємо позначки по осі X
-        plt.yticks([])  # Прибираємо позначки по осі Y
-        plt.xlabel(class_name)  # Підпис класу
+        plt.imshow(class_images[j])
+        plt.xticks([])
+        plt.yticks([])
+        plt.xlabel(class_name)
 plt.tight_layout()
 plt.show()
 
-# 4. Перевірка розмірів зображень (всі зображення будуть однаковими після масштабування)
+# 4. Перевірка розмірів зображень
 image_shape = data.image_shape
 print(f"Розміри зображень після масштабування: {image_shape}")
