@@ -68,9 +68,7 @@ callbacks = [
 # Навчання моделі
 model.fit(
     train_data,
-    epochs=10,
-    validation_data=test_data,
-    callbacks=callbacks
+    epochs=1
 )
 
 train_loss, train_acc = model.evaluate(train_data)
